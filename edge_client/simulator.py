@@ -8,12 +8,13 @@ device_id='eddge-001'
 
 while True:
     payload={
-        'device_id':'device_id',
+        'device_id':device_id,
         'timestamp':time.time(),
         'values':[random.random() for i in range(5)]
     }
 
     r=requests.post(BACKEND_URL,json=payload)
 
-    print(r.json())
+    print("Status:", r.status_code)
+    print("Raw response:", r.text)
     time.sleep(5)

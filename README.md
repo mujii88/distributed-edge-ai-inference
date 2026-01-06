@@ -1,22 +1,78 @@
-# distributed-edge-ai-inference
+🧠 Distributed Edge AI Inference System
 
+A production-style edge-to-cloud AI inference pipeline where edge devices send sensor data to a backend that performs asynchronous ML inference and stores results.
 
-## Project Overview
-This project implements a distributed Edge-AI inference system where lightweight edge devices stream data to a scalable backend that performs machine learning inference and synchronizes decisions in real time.
+This project demonstrates backend engineering, system design, and applied ML inference.
 
+🚀 Features
 
-## Problem Statement
-Edge devices such as IoT sensors or drones often lack the computational resources to run deep learning models locally. This project offloads inference to a backend service that processes streaming time-series data and detects anomalous behavior reliably and efficiently.
+Edge device sensor data simulation
 
-## Machine Learning Scope
-- Data Type: Time-series sensor data
-- Task: Anomaly detection
-- Dataset: NASA CMAPSS (simulated streaming)
-- Model: LSTM Autoencoder
-- Inference Mode: Real-time
+FastAPI backend for data ingestion
 
-## High-Level Architecture
-1. Edge Client simulates a lightweight device and streams sensor data.
-2. Backend API receives data and performs ML inference.
-3. Inference results are stored and synchronized.
-4. Monitoring tracks latency, errors, and anomalies.
+Asynchronous inference queue
+
+Background worker for ML inference
+
+SQLite persistence (sensor data + predictions)
+
+Modular and scalable architecture
+
+🏗️ Architecture
+Edge Device → FastAPI API → Inference Queue → Worker → ML Inference → Database
+
+🧠 Tech Stack
+
+Python
+
+FastAPI
+
+Pydantic
+
+SQLite
+
+Queue-based async processing
+
+Logging
+
+📂 Structure
+backend/
+ ├── app/
+ │   ├── main.py
+ │   ├── database.py
+ │   ├── schemas.py
+ │   ├── queue.py
+ │   └── ml/inference.py
+ └── worker.py
+edge_client/
+ └── simulator.py
+
+⚙️ Run
+pip install -r requirements.txt
+uvicorn backend.app.main:app --reload
+python backend/worker.py
+python edge_client/simulator.py
+
+📊 Sample Response
+{
+  "status": "stored",
+  "prediction": {
+    "prediction": "Normal",
+    "score": 0.67
+  }
+}
+
+🎯 Key Learnings
+
+Asynchronous backend design
+
+Edge-to-cloud AI workflows
+
+ML inference in production systems
+
+Queue-based scalability patterns
+
+👤 Author
+
+Mujtaba Ahmed
+Final-year Electrical Engineering student | Edge AI & Distributed Systems

@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,Field
 from typing import List
 
-class Sensor_payload(BaseModel):
-    device_id:str
-    timestamp:str
-    values:List[float]
+class SensorPayload(BaseModel):
+    device_id:str=Field(...,min_length=1)
+    timestamp:float
+    values:List[float]=Field(...,min_items=1,max_items=20)
